@@ -1,0 +1,56 @@
+# ======================
+# Common build outputs
+# ======================
+*.d
+*.o
+*.obj
+*.elf
+*.map
+*.hex
+*.bin
+*.out
+
+# Debug / symbols
+*.su
+*.idb
+*.pdb
+*.dSYM/
+
+# Libraries
+*.a
+*.la
+*.lo
+*.dll
+*.so
+*.dylib
+
+# ======================
+# Keil MDK / C251 outputs
+# ======================
+Objects/
+Listings/
+DebugConfig/
+
+*.uvguix.*
+*.uvgui.*
+*.uvoptx
+*.uvopt
+*.uvprojx
+*.uvproj
+*.uvwsprj
+
+# C51 / C251 compiler outputs
+*.lst
+*.m51
+*.omf
+*.abs
+*.sym
+*.plg
+*.cod
+
+# temporary files
+*.crf
+*.bak
+*.tmp
+*.lnp
+*.dep
