@@ -92,4 +92,5 @@
   ..\..\libraries\sdk\drives\fsl_usdhc.h \
   ..\..\libraries\components\sdmmc\common\fsl_sdmmc_spec.h \
   ..\..\libraries\components\sdmmc\sdmmc_config.h \
-  ..\..\libraries\sdk\board\clock_config.h ..\code\pit.h ..\code\menu.h
+  ..\..\libraries\sdk\board\clock_config.h ..\code\pit.h ..\code\menu.h \
+  ..\code\flash.h ..\code\buzzer.h ..\code\mpu6050.h

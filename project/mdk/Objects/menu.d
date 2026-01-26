@@ -92,4 +92,4 @@
   ..\..\libraries\sdk\drives\fsl_usdhc.h \
   ..\..\libraries\components\sdmmc\common\fsl_sdmmc_spec.h \
   ..\..\libraries\components\sdmmc\sdmmc_config.h \
-  ..\..\libraries\sdk\board\clock_config.h
+  ..\..\libraries\sdk\board\clock_config.h ..\code\flash.h
