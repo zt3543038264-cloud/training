@@ -7,6 +7,7 @@
 ".\objects\buzzer.o"
 ".\objects\flash.o"
 ".\objects\mpu6050.o"
+".\objects\motor.o"
 ".\objects\zf_common_clock.o"
 ".\objects\zf_common_debug.o"
 ".\objects\zf_common_fifo.o"
@@ -162,6 +163,8 @@
 ".\objects\usb_device_ch9.o"
 ".\objects\usb_device_class.o"
 ".\objects\usb_device_descriptor.o"
+".\objects\inv_mpu.o"
+".\objects\inv_mpu_dmp_motion_driver.o"
 --library_type=microlib --diag_suppress 6314,6329 --strict --scatter ".\scf\MIMXRT1064xxxxx_flexspi_nor.scf"
 --remove --entry=Reset_Handler --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers
