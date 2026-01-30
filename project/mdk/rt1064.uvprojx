@@ -440,16 +440,6 @@
               <FilePath>..\code\sensor.h</FilePath>
             </File>
             <File>
-              <FileName>buzzer.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\buzzer.c</FilePath>
-            </File>
-            <File>
-              <FileName>buzzer.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\buzzer.h</FilePath>
-            </File>
-            <File>
               <FileName>flash.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\code\flash.c</FilePath>
@@ -478,6 +468,46 @@
               <FileName>Motor.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\code\Motor.h</FilePath>
+            </File>
+            <File>
+              <FileName>SoundLight.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\SoundLight.c</FilePath>
+            </File>
+            <File>
+              <FileName>SoundLight.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\SoundLight.h</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\pid.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\pid.h</FilePath>
+            </File>
+            <File>
+              <FileName>key_handler.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\key_handler.c</FilePath>
+            </File>
+            <File>
+              <FileName>key_handler.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\key_handler.h</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\code\bluetooth.c</FilePath>
+            </File>
+            <File>
+              <FileName>bluetooth.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\code\bluetooth.h</FilePath>
             </File>
           </Files>
         </Group>
@@ -2148,76 +2178,6 @@
               <FileName>usb_device_descriptor.h</FileName>
               <FileType>5</FileType>
               <FilePath>..\..\libraries\components\usb\usb_cdc_adapter\usb_device_descriptor.h</FilePath>
-            </File>
-          </Files>
-        </Group>
-        <Group>
-          <GroupName>DMP</GroupName>
-          <Files>
-            <File>
-              <FileName>dmpKey.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\dmpKey.h</FilePath>
-            </File>
-            <File>
-              <FileName>dmpmap.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\dmpmap.h</FilePath>
-            </File>
-            <File>
-              <FileName>inv_mpu.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\DMP\inv_mpu.c</FilePath>
-            </File>
-            <File>
-              <FileName>inv_mpu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\inv_mpu.h</FilePath>
-            </File>
-            <File>
-              <FileName>inv_mpu_dmp_motion_driver.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\code\DMP\inv_mpu_dmp_motion_driver.c</FilePath>
-            </File>
-            <File>
-              <FileName>inv_mpu_dmp_motion_driver.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\inv_mpu_dmp_motion_driver.h</FilePath>
-            </File>
-            <File>
-              <FileName>log.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\log.h</FilePath>
-            </File>
-            <File>
-              <FileName>mlinclude.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\mlinclude.h</FilePath>
-            </File>
-            <File>
-              <FileName>mlmath.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\mlmath.h</FilePath>
-            </File>
-            <File>
-              <FileName>mlos.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\mlos.h</FilePath>
-            </File>
-            <File>
-              <FileName>mltypes.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\mltypes.h</FilePath>
-            </File>
-            <File>
-              <FileName>mpu.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\mpu.h</FilePath>
-            </File>
-            <File>
-              <FileName>stdint_invensense.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>..\code\DMP\include\stdint_invensense.h</FilePath>
             </File>
           </Files>
         </Group>

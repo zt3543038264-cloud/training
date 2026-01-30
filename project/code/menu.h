@@ -6,15 +6,24 @@
 /*ips200_show_int(224,304,1,1);屏幕边界*/
 #define IPS200_TYPE		(IPS200_TYPE_SPI)
 
-#define MODE_COUNT		(5)						//5个发车模式
-#define PID_COUNT		(3)						//PID
-#define ROW_MODE		(16)						//参数行
-#define ROW_KP			(48)
-#define ROW_KI			(64)
-#define ROW_KD			(80)
+typedef enum {
+	Main,
+	CarCheck,
+	PID,
+	Edit
+} Menu;
 
-extern float pidnum[MODE_COUNT][PID_COUNT];
-extern uint8_t carmod;
+typedef enum {
+	Carmode,
+	Angle,
+	Speed,
+	Turn,
+	Position
+} Param;
+
+#define ROW_LENGTH		(16)
+
+extern float parameter[5][3];
 
 void Menu_Init(void);
 void Menu_Update(void);

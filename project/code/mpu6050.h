@@ -3,14 +3,13 @@
 
 #include "zf_common_headfile.h"
 
-#define MPU_ADDR    0x68
+#define MPU_ADDR			0x68
+#define SAMPLE_FREQ			200.0f							// 采样频率(Hz)
+#define TWO_KP				2.2f							//比例增益
+#define TWO_KI				0.01f							//积分增益
 
-extern uint8 mpuflag;
 extern float ax,ay,az,gx,gy,gz;
 extern float pitch, roll, yaw;
-
-uint8 MPU_Write_Len(uint8 addr, uint8 reg, uint8 len, uint8 *buf);
-uint8 MPU_Read_Len(uint8 addr, uint8 reg, uint8 len, uint8 *buf);
 
 void Mpu6050_Init(void);
 void Mpu6050_Read(void);
