@@ -5,12 +5,13 @@
 #include "pit.h"
 #include "key_handler.h"
 #include "menu.h"
-#include "SoundLight.h"
 #include "flash.h"
 #include "mpu6050.h"
 #include "Motor.h"
 #include "pid.h"
 #include "bluetooth.h"
+#include "sensor.h"
+#include "SoundLight.h"
 
 int main(void)
 {
@@ -19,13 +20,16 @@ int main(void)
 	system_delay_ms(300);
 	
 	Bluetooth_Init();
-	Motor_Init();
+//	Motor_Init();
+//	Sensor_Init();
+//	SoundLight_Init();
 	flash_init();
 	key_init(10);
 	key_handler_init();
 	Menu_Init();
 	Mpu6050_Init();
 	Pit_Init();
+	
 	
 	interrupt_global_enable(0);
 	
@@ -34,23 +38,26 @@ int main(void)
 		key_event_scan();
 		Menu_Update();
 		Mpu6050_Show();
+		BlueTooth_Update();
+//		Sensor_Check();
+//		SoundLight_React();
 		
-//		BlueTooth_Update();
-		
+//		ips200_show_float(0,96,LeftSpeed,4,2);
+//		ips200_show_float(0,112,RightSpeed,4,2);
+//		BlueSerial_Printf("[plot,%f,%f]", LeftSpeed, RightSpeed);
 	}
 }
 
 void pit_handler(void)
 {
 	Mpu6050_Read();
-	
-	static uint16 count0;
-		count0++;
+//	static uint16 count0;
+//		count0++;
+//	if(count0>=10)
+//	{
+//		count0=0;
+//		Speed_Tweak();
+//	}
 //	Angle_Tweak();
-	if(count0>=10)
-	{
-		count0=0;
-//	Speed_Tweak();
-	}
 }
 

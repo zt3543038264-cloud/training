@@ -22,6 +22,8 @@ static float invSqrt(float x)
 	return y;
 }
 
+static float last_ax = 0, last_ay = 0, last_az = 1.0f;
+static float last_acc_norm = 1.0f;
 static void Mahony_Update(float gx, float gy, float gz, float ax, float ay, float az)
 {
 	float recipNorm;
@@ -29,7 +31,23 @@ static void Mahony_Update(float gx, float gy, float gz, float ax, float ay, floa
 	float halfex, halfey, halfez;
 	float qa, qb, qc;
 	
-	if(!((ax == 0.0f) && (ay == 0.0f) && (az == 0.0f)))
+	float acc_norm = sqrtf(ax * ax + ay * ay + az * az);
+	float norm_change = fabsf(acc_norm - last_acc_norm);
+	 float dir_change = sqrtf((ax - last_ax) * (ax - last_ax) + 
+								 (ay - last_ay) * (ay - last_ay) + 
+								 (az - last_az) * (az - last_az));
+	last_acc_norm = last_acc_norm * 0.95f + acc_norm * 0.05f;
+	last_ax = last_ax * 0.95f + ax * 0.05f;
+	last_ay = last_ay * 0.95f + ay * 0.05f;
+	last_az = last_az * 0.95f + az * 0.05f;
+	 
+	float kp_scale = 1.0f;
+	if(acc_norm < 0.9f || acc_norm > 1.1f)kp_scale *= 0.3f;
+	if(norm_change > 0.03f)kp_scale *= 0.2f;
+	if(dir_change > 0.05f)kp_scale *= 0.1f;
+	if(kp_scale < 0.05f) kp_scale = 0.05f;
+	
+	if(acc_norm > 0.5f && acc_norm < 1.5f)
 	{
 		recipNorm = invSqrt(ax * ax + ay * ay + az * az);
 		ax *= recipNorm;
@@ -46,17 +64,25 @@ static void Mahony_Update(float gx, float gy, float gz, float ax, float ay, floa
 
 		if(TWO_KI > 0.0f)
 		{
-			integralFBx += TWO_KI * halfex * (1.0f / SAMPLE_FREQ);
-			integralFBy += TWO_KI * halfey * (1.0f / SAMPLE_FREQ);
-			integralFBz += TWO_KI * halfez * (1.0f / SAMPLE_FREQ);
-			gx += integralFBx;
-			gy += integralFBy;
-			gz += integralFBz;
+            integralFBx += TWO_KI * halfex * (1.0f / SAMPLE_FREQ) * kp_scale;
+            integralFBy += TWO_KI * halfey * (1.0f / SAMPLE_FREQ) * kp_scale;
+            integralFBz += TWO_KI * halfez * (1.0f / SAMPLE_FREQ) * kp_scale;
+			
+            float int_limit = 0.2f;
+            if(integralFBx > int_limit) integralFBx = int_limit;
+            if(integralFBx < -int_limit) integralFBx = -int_limit;
+            if(integralFBy > int_limit) integralFBy = int_limit;
+            if(integralFBy < -int_limit) integralFBy = -int_limit;
+            if(integralFBz > int_limit) integralFBz = int_limit;
+            if(integralFBz < -int_limit) integralFBz = -int_limit;
+            
+            gx += integralFBx;
+            gy += integralFBy;
+            gz += integralFBz;
 		}
-
-		gx += TWO_KP * halfex;
-		gy += TWO_KP * halfey;
-		gz += TWO_KP * halfez;
+        gx += TWO_KP * halfex * kp_scale;
+        gy += TWO_KP * halfey * kp_scale;
+        gz += TWO_KP * halfez * kp_scale;
 	}
 	
 	gx *= (0.5f * (1.0f / SAMPLE_FREQ));
@@ -96,7 +122,7 @@ static void Gyro_Calibrate(void)
         gx_sum += mpu6050_gyro_transition(mpu6050_gyro_x);
         gy_sum += mpu6050_gyro_transition(mpu6050_gyro_y);
         gz_sum += mpu6050_gyro_transition(mpu6050_gyro_z);
-        system_delay_ms(5);
+        system_delay_ms(2);
     }
     
     gx_offset = gx_sum / 200.0f;
@@ -113,7 +139,7 @@ void Mpu6050_Calibrate(void)
 	for(uint16 i = 0; i < 500; i++)
 	{
 		Mpu6050_Read();
-		system_delay_ms(5);
+		system_delay_ms(2);
 	}
 	
 	while(cnt < 25)
@@ -121,10 +147,10 @@ void Mpu6050_Calibrate(void)
 		Mpu6050_Read();
 		p_sum += pitch;
 		cnt++;
-		system_delay_ms(5);
+		system_delay_ms(2);
 	}
 	
-	pitch_offset = p_sum / 20.0f;
+	pitch_offset = p_sum / 25.0f;
 }
 
 /*MPU³õÊ¼»¯*/
@@ -162,6 +188,7 @@ void Mpu6050_Read(void)
     Quaternion_To_Euler();
 	
 	pitch -= pitch_offset;
+	pitch = -pitch;
 }
 
 /*ÏÔÊ¾*/
